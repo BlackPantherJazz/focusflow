@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Rajdhani:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap');
 :root {
     --bg: #0a0e1a;
     --surface: #0d1b3e;
@@ -15,7 +16,7 @@
     --text3: #3a4a6a;
     --radius: 12px;
     --radius-sm: 8px;
-    --font-head: "Bangers", cursive;
+    --font-head: "Black Ops One", cursive;
     --font-body: "DM Sans", sans-serif;
     --font-sub: "Rajdhani", sans-serif;
 }
@@ -23,7 +24,7 @@
 /* ================================
    GOOGLE FONTS
 ================================ */
-@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Rajdhani:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Rajdhani:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap');
 
 /* ================================
    RESET & BASE

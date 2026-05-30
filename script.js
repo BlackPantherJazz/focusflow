@@ -1,7 +1,7 @@
 'use strict';
 // getElementById
 const xpCount = document.getElementById('xp-count');
-const timerDisplay = document.getElementById('progress-bar');
+const timerDisplay = document.getElementById('timer-display');
 const progressBar = document.getElementById('progress-bar');
 const timerMessage = document.getElementById('timer-message');
 const startBtn = document.getElementById('start-btn');
@@ -19,7 +19,7 @@ const toast = document.getElementById('toast');
 
 // Query Selector
 const cardTemplate = document.querySelector('#card-template')
-const energyBtns = document.querySelectorAll('.energy-btn')
+const energyBtns = document.querySelectorAll('.energy-btn');
 
 // Section B : App State
 let timerDuration = 25*60;
@@ -43,7 +43,7 @@ let tasks = savedTasks ? JSON.parse(savedTasks) : [];
 function updateTimerDisplay() {
     const minutes = Math.floor(timeRemaining / 60);
     const seconds = timeRemaining % 60;
-    const display = `${minutes};${seconds.toString().padStart(2, '0')}`;
+    const display = `${minutes}:${seconds.toString().padStart(2, '0')}`;
     timerDisplay.textContent = display;
 
     if (timeRemaining <= 60) {
@@ -82,7 +82,7 @@ function addXP(amount) {
     window.setTimeout(function() {
         xpCount.classList.remove('bump');
     }, 400);
-    window.localStorage.setItem('focusflow-xp');
+    window.localStorage.setItem('focusflow-xp',xp);
     showToast('⚡ +' + amount + ' XP!');
 }
 
@@ -105,3 +105,33 @@ function startTimer() {
         }
     }, 1000);
 }
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  isRunning = false;
+  timeRemaining = timerDuration;
+  updateTimerDisplay();
+  updateProgressBar();
+  startBtn.removeAttribute('disabled');
+  timerMessage.textContent = 'Pick an energy level and press Start.';
+  timerDisplay.classList.remove('warning');
+  timerDisplay.classList.remove('danger');
+}
+
+
+// Energy Buttons
+
+energyBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        energyBtns.forEach(function(b) {
+            b.classList.remove('active');
+        });
+        btn.classList.add('active');
+        const newTime = parseInt(btn.dataset.time);
+        currentEnergy = btn.dataset.energy;
+        timerDuration = newTime * 60;
+        timeRemaining = timerDuration;
+        resetTimer();
+    });
+});
+
