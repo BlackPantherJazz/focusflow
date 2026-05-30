@@ -28,16 +28,36 @@
         <h2 class="section-title">How's Your Energy Level Today?</h2>
         
         <div class="energy-buttons">
-            <button class="energy-btn" data-energy="low" data-time="15"> LOW
-                <span class="energy-sub">15 min sessions</span>
-            </button>
-            <button class="energy-btn" data-energy="medium" data-time="25">MEDIUM
-                <span class="energy-sub">25 min sessions</span>
-            </button>
-            <button class="energy-btn" data-energy="high" data-time="45">HIGH
-                <span class="energy-sub">45 min sessions</span>
-            </button>
-    </div>
+        <button class="energy-btn" data-energy="low" data-time="15">
+          <div class="rings-icon rings-low">
+            <div class="ring-dot"></div>
+            <div class="ring r1"></div>
+            <div class="ring r2"></div>
+          </div>
+          Low
+          <span class="energy-sub">15 min sessions</span>
+        </button>
+        <button class="energy-btn" data-energy="medium" data-time="25">
+          <div class="rings-icon rings-med">
+            <div class="ring-dot"></div>
+            <div class="ring r1"></div>
+            <div class="ring r2"></div>
+            <div class="ring r3"></div>
+          </div>
+          Medium
+          <span class="energy-sub">25 min sessions</span>
+        </button>
+        <button class="energy-btn" data-energy="high" data-time="45">
+          <div class="rings-icon rings-high">
+            <div class="ring-dot"></div>
+            <div class="ring r1"></div>
+            <div class="ring r2"></div>
+            <div class="ring r3"></div>
+          </div>
+          High
+          <span class="energy-sub">45 min sessions</span>
+        </button>
+      </div>
     </section>
     <section class="timer-section">
         <h2 class="section-title">Focus Session</h2>
@@ -51,7 +71,7 @@
             </div>
 
             <p class="timer-message" id="timer-message">
-                Pick and energy level and press Start. 
+                Choose Your Energy Level and Press Start. 
             </p>
 
             <div class="timer-buttons">
