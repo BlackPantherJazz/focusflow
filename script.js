@@ -74,3 +74,34 @@ function showToast(message) {
 }
 
 
+// Modifying Text Context in Response to User Action & Modifying Classes
+function addXP(amount) {
+    xp += amount;
+    xpCount.textContent = xp;
+    xpCount.classList.add('bump');
+    window.setTimeout(function() {
+        xpCount.classList.remove('bump');
+    }, 400);
+    window.localStorage.setItem('focusflow-xp');
+    showToast('⚡ +' + amount + ' XP!');
+}
+
+function startTimer() {
+    if (isRunning) return;
+    isRunning = true;
+    startBtn.setAttribute('disabled', 'true');
+    resetBtn.removeAttribute('disabled');
+    timerMessage.textContent = 'Stay Locked In. You Got This.';
+    timerInterval = window.setInterval(function() {
+        timeRemaining--;
+        updateTimerDisplay();
+        updateProgressBar();
+        if (timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            isRunning = false;
+            startBtn.removeAttribute('disabled');
+            timerMessage.textContent = 'Mission Complete! Great Work!';
+            addXP(25);
+        }
+    }, 1000);
+}
