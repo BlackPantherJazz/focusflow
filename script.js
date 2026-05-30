@@ -39,3 +39,38 @@ if (savedXP !== null) {
 
 const savedTasks = window.localStorage.getItem('focusflow-task');
 let tasks = savedTasks ? JSON.parse(savedTasks) : [];
+
+function updateTimerDisplay() {
+    const minutes = Math.floor(timeRemaining / 60);
+    const seconds = timeRemaining % 60;
+    const display = `${minutes};${seconds.toString().padStart(2, '0')}`;
+    timerDisplay.textContent = display;
+
+    if (timeRemaining <= 60) {
+        timerDisplay.classList.add('danger');
+        timerDisplay.classList.remove('warning');
+    } else if (timeRemaining <= 300) {
+        timerDisplay.classList.add('warning');
+        timerDisplay.classList.remove('danger');
+    } else {
+        timerDisplay.classList.remove('warning');
+        timerDisplay.classList.remove('danger');
+    }
+}
+
+function updateProgressBar() {
+    const percentage = (timeRemaining / timerDuration) * 100;
+    progressBar.style.width = percentage +'%';
+
+}
+
+function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add('visible');
+    clearTimeout(window.toastTimeout);
+    window.toastTimeout = window.setTimeout(function() {
+        toast.classList.remove('visible');
+    }, 3000);
+}
+
+
