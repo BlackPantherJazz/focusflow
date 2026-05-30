@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusFlow</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- App Name and XP counter -->
+    <header class="site-header">
+        <div class="header-inner">
+            <h1>FocusFlow</h1>
+            <p class="tagline">Built For Busy Brains</p>
+        </div>
+
+        <div class="xp-display">
+            <span class="xp-label">XP</span>
+            <span class="xp-number" id="xp-count">0</span>
+        </div>
+
+    </div>
+
+    </header>
+    <main class="main-content">
+        <!-- Energy Selector -->
+    <section class="energy-section">
+        <h2 class="section-title">How's Your Energy Level Today?</h2>
+        
+        <div class="energy-buttons">
+            <button class="energy-btn" data-energy="low" data-time="15"> LOW
+                <span class="energy-sub">15 min sessions</span>
+            </button>
+            <button class="energy-btn" data-energy="medium" data-time="25">MEDIUM
+                <span class="energy-sub">25 min sessions</span>
+            </button>
+            <button class="energy-btn" data-energy="high" data-time="45">HIGH
+                <span class="energy-sub">45 min sessions</span>
+            </button>
+    </div>
+    </section>
+    <section class="timer-section">
+        <h2 class="section-title">Focus Session</h2>
+
+        <div class="timer-container">
+
+            <div class="timer-display" id="timer-display">25:00</div>
+
+            <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="progress-bar"></div>
+            </div>
+
+            <p class="timer-message" id="timer-message">
+                Pick and energy level and press Start. 
+            </p>
+
+            <div class="timer-buttons">
+                <button class="btn-primary" id="start-btn">Start</button>
+                <button class="btn-secondary" id="reset-btn">Reset</button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Brain Dump -->
+        <section class="braindump-section">
+            <h2 class="section-title">Brain Dump</h2>
+            <p class="section-desc">
+                Distracting thought? Park it here and stay focused.
+            </p>
+
+            <div class="braindump-form">
+                <input 
+                type="text"
+                id="dump-input"
+                placeholder="eg. remember to email Ash"
+                maxlength="120"
+                required
+                />
+                <button class="btn-primary" id="dump-btn">Add</button>
+            </div>
+            <span class="error-msg" id="dump-error"></span>
+
+            <ul class="dump-list" id="dump-list"></ul>
+
+        </section>
+
+        <!-- Task Breakdown -->
+        <section class="task-section">
+            <h2 class="section-title">Task Breakdown</h2>
+            <p class="section-desc">
+                Enter one bifg task and break it into small steps.
+            </p>
+
+            <div class="task-form">
+                <input 
+                type="text"
+                id="task-input"
+                placeholder="eg. finish my SBA"
+                minlength="3"
+                maxlength="80"
+                required
+            />
+            <button class="btn-primary" id="task-btn">Break It Down!</button>
+            </div>
+            <span class="error-msg" id="task-error"></span>
+            <ul class="task-list" id="task-list"></ul>
+            <button class="btn-danger" id="clear-btn">Clear All Task</button>
+        </section>
+
+        <!-- Encouragement -->
+
+        <div class="toast" id="toast"></div>
+    
+    </main>
+
+    <!-- Hidden Task -->
+
+    <template id="task-template">
+        <li class="task-item">
+            <input type="checkbox" class="task-check"/>
+            <span class="task-text"></span>
+            <button class="task-delete">X</button>
+        </li>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
