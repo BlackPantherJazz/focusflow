@@ -2,9 +2,9 @@ A productivity web app designed for people with ADHD.
 Built with HTML, CSS, and JavaScript.
 
 ## How to Run
-1.Clone or download the repository
-2.Open `index.html` in any browser
-3.No installations or servers required
+- Clone or download the repository
+- Open `index.html` in any browser
+- No installations or servers required
 
 ## Features
 - Pomodoro focus timer with Low / Medium / High energy modes
