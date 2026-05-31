@@ -107,17 +107,18 @@ function startTimer() {
 }
 
 function resetTimer() {
-  clearInterval(timerInterval);
-  isRunning = false;
-  timeRemaining = timerDuration;
-  updateTimerDisplay();
-  updateProgressBar();
-  startBtn.removeAttribute('disabled');
-  timerMessage.textContent = 'Pick an energy level and press Start.';
-  timerDisplay.classList.remove('warning');
-  timerDisplay.classList.remove('danger');
+    clearInterval(timerInterval);
+    isRunning = false;
+    timeRemaining = timerDuration;
+    updateTimerDisplay();
+    updateProgressBar();
+    startBtn.removeAttribute('disabled');
+    timerMessage.textContent = 'Pick an energy level and press Start.';
+    timerDisplay.classList.remove('warning');
+    timerDisplay.classList.remove('danger');
 }
-
+startBtn.addEventListener('click', startTimer);
+resetBtn.addEventListener('click', resetTimer);
 
 // Energy Buttons
 
@@ -135,3 +136,34 @@ energyBtns.forEach(function(btn) {
     });
 });
 
+// Brain Dump
+function addDumpItem() {
+    const text = dumpInput.value.trim();
+    if (text.length === 0) {
+        dumpError.textContent = 'Please enter a thought first';
+        return;
+    }
+    dumpError.textContent ='';
+    const li = document.createElement('li');
+    li.classList.add('dump-item');
+    const span = document.createElement('span');
+    span.classList.add('dump-item-text');
+    span.textContent = text;
+    const deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('dump-delete');
+    deleteBtn.textContent = 'x';
+    deleteBtn.addEventListener('click', function() {
+        li.parentNode.removeChild(li);
+    });
+        li.appendChild(span);
+        li.appendChild(deleteBtn);
+        dumpList.appendChild(li);
+        dumpInput.value = '';
+        dumpInput.focus();
+}
+    dumpBtn.addEventListener('click', addDumpItem);
+    dumpInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            addDumpItem();
+        }
+    });
