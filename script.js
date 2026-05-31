@@ -167,3 +167,65 @@ function addDumpItem() {
             addDumpItem();
         }
     });
+
+// Task Breakdown
+function addTaskItems() {
+    const text = taskInput.value.trim();
+    if (text.length < 3) {
+        taskError.textContent = 'Please enter at least 3 characters.';
+        return;
+    }
+    taskError.textContent = '';
+    const steps = text.split(',').map(function(step) {
+        return step.trim();
+    }).filter(function(step) {
+        return step.length > 0;
+    });
+    const fragment = document.createDocumentFragment();
+    steps.forEach(function(stepText) {
+        const clone = cardTemplate.content.cloneNode(true);
+        const taskText = clone.querySelector('.task-text');
+        const checkbox = clone.querySelector('.task-check');
+        const deleteBtn = clone.querySelector('.task-delete');
+        taskText.textContent = stepText;
+        checkbox.addEventListener('click', function() {
+            taskText.classList.toggle('completed');
+            if (taskText.classList.contains('completed')) {
+                addXP(10);
+            }
+        });
+        deleteBtn.addEventListener('click', function() {
+            const li = deleteBtn.closest('li');
+            li.parentNode.removeChild(li);
+        });
+        fragment.appendChild(clone);
+    });
+        taskList.appendChild(fragment);
+        taskInput.value = '';
+        showToast('Task added! Break it Down!');
+        }
+
+        taskBtn.addEventListener('click', addTaskItems);
+        taskInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                addTaskItems();
+            }
+        });
+
+    clearBtn.addEventListener('click', function() {
+        const confirmed = window.confirm('Clear all tasks? This cannot be undone.');
+        if (!confirmed) return;
+        taskList.innerHTML = '';
+        tasks = [];
+        window.localStorage.setItem('focusflow-tasks', JSON.stringify(tasks));
+        showToast('All tasks cleared.');
+});
+
+/* ============================================
+   SECTION H: INITIAL RENDER
+   When the page loads, call these functions
+   to set the display to the correct state.
+============================================ */
+updateTimerDisplay();
+updateProgressBar();
+xpCount.textContent = xp;
