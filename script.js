@@ -229,3 +229,4 @@ function addTaskItems() {
 updateTimerDisplay();
 updateProgressBar();
 xpCount.textContent = xp;
+

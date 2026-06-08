@@ -29,4 +29,4 @@ Built with HTML, CSS, and JavaScript.
 - Tasks are cleared on refresh — localStorage saving is partially implemented
 
 ## Author
-Built by Henoc Montes 
+Built by Henoc Bazelais Montes 
